@@ -1,0 +1,103 @@
+selctor
+
+".class"
+"#id"
+"tag"
+"[atttribute]"
+
+fadeOut("slow")//default 400ms, slow 600ms
+fadeOut(1000).fadeIn(1000);
+fadeTo(time, opacity)
+fadeTo(1000, 0.4)
+
+fadeToggle
+
+fadeTo(, 0) //invisible, but sapce left untouched
+fadeout() //display:none, space will be ocuppied 
+
+hide(time);//display:none
+show();
+toggle();
+selector could hit multiple targetss//####
+
+slideDown()
+slideUp()
+slideToggle()
+
+//move elements
+
+use margin
+$(".red-box").animate({
+      "margin-left" : "200"
+  });
+
+$(".red-box").animate({
+      "margin-left" : "+=200"
+  });
+
+$(".red-box").animate({
+      "margin-left" : "+=200"
+  }, 1000, "linear");
+
+$(".red-box").animate({
+      marginLeft : "+=200"
+  }, 1000, "linear");
+
+$("p").animate({
+       fontSize: "20px"
+  },1000);
+
+// no color
+
+delay();
+
+  $(".red-box").fadeTo(1000, 0.1);
+  $(".green-box").delay(1000).fadeTo(1000, 0.1);
+  $(".blue-box").delay(2000).fadeTo(1000, 0.1);
+
+$(".red-box").fadeTo(1000, 0.1, function(){
+      $(".green-box").fadeTo(1000, 0.1, function(){
+          $(".blue-box").fadeTo(1000, 0.1);
+      })
+  });
+});
+
+//call back function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SF 12/25/2016
+
+san barbara
+morro bay
+san simon
+big sur
