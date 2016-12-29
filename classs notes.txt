@@ -274,6 +274,8 @@ $(function(){
     })
 });
 
+
+//example for passing additional data to events
 $(function(){
     $("button").click({
         user: "peter"
@@ -287,11 +289,102 @@ $(function(){
 });
 
 
+for ( var i = 0; i < 5; i++ ) {
+  $( "button" ).eq( i ).on( "click", { value: i }, function( event ) {
+    var msgs = [
+      "button = " + $( this ).index(),
+      "event.data.value = " + event.data.value,
+      "i = " + i
+    ];
+    logDiv.append( msgs.join( ", " ) + "<br>" );
+  });
+}
+
+//create new one
+$("<img>")
+
+imgs.click(function(){
+        var source = $(this).attr("src");
+        var newimg = $("<img>").attr("src", source);
+        $("#content").append($("<div class='lightbox'>"))
+        $(".lightbox").empty().append(newimg).fadeIn(1000).delay(2000).fadeOut(1000);
+    })
+
+//keydown()
+//keyup()
+
+$(function(){
+    $("html").keydown(function(event){
+        console.log(event.which);
+    })
+});
+//add shortcut to my page
+
+//focus and blur
+
+$(function(){
+    var inputfields = $("input:text, input:password, textarea");
+    inputfields.focus(function(){
+        $(this).css("box-shadow", "0 0 4px #666");
+    })
+    inputfields.blur(function(){
+        $(this).css("box-shadow", "none");
+    })
+});
+
+///
+
+var inputfields = $("input:text, input:password, textarea");
+    inputfields.focus(function(){
+        $(this).css("box-shadow", "0 0 4px red");
+    })
+    inputfields.blur(function(){
+        if ($(this).val().length <= 3)
+        {
+            $(this).css("box-shadow", "0 0 4px red");
+        }
+        else
+        {
+            $(this).css("box-shadow", "0 0 4px green");
+        }
+    })
+
+//change event usually for checkbox radio...
+//add() adds new element to selected elements
+
+change
+
+select>option*4>{option $}    tab
+
+//submit event for form
+
+$(function(){
+    $("form").submit(function(event){
+        if($("textarea").val().trim() == "")
+        {
+            $("textarea").css({
+                "box-shadow" : "0 0 5px red"
+            })
+            event.preventDefault();
+        }
+        else
+        {
+            //form will be submitted
+        }
+    })
+});
 
 
+//placeholder is for default hint value
 
-
-
+//html
+<form action="">
+      <input type="text" placeholder="username">
+      <span id="namefeedback"></span><!--feedback is added dynamically--><br>
+      <input type="password" placeholder="password">
+      <span id="passwordfeedback"></span><br>
+      <input type="submit" value="submit"><br>
+</form>
 
 
 
