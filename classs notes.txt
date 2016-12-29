@@ -5,6 +5,20 @@ selctor
 "tag"
 "[atttribute]"
 
+$("h2, p, input") // comma seperation
+$("input[type='email']")//email is surrounded by '' not ""
+$("p:first") //first paragraph
+$("p:last") //last paragraph
+$("p:even") //even paragraph
+$$("p:odd") //odd paragraph
+
+.css({
+   'font-size' : '10px',
+   'width' : '30px',
+   'height' : '10px'
+});
+
+
 fadeOut("slow")//default 400ms, slow 600ms
 fadeOut(1000).fadeIn(1000);
 fadeTo(time, opacity)
@@ -55,6 +69,8 @@ delay();
   $(".green-box").delay(1000).fadeTo(1000, 0.1);
   $(".blue-box").delay(2000).fadeTo(1000, 0.1);
 
+
+//chain
 $(".red-box").fadeTo(1000, 0.1, function(){
       $(".green-box").fadeTo(1000, 0.1, function(){
           $(".blue-box").fadeTo(1000, 0.1);
@@ -63,28 +79,212 @@ $(".red-box").fadeTo(1000, 0.1, function(){
 });
 
 //call back function
+////////////////search
+
+$("#list").find("li").css("background-color", "#B4B41E");//find all descendent of id list all levels
+
+$("#list").children("li")//direct children
+
+$("#list").parents("li")//all upper lever of children, opposite to find
+
+$("#list").parents()//leave blank, all parent are selected
 
 
 
+$("#list").parent()// parent opposite to find children
+
+$("#list").siblings()
+$("#list").siblings(":header") //h1~h6
+$("#list").prev();
+$("#list").next();
 
 
+$("list").find("li").filter(":even")
 
 
+$("li").filter(function(index) {
+//index of the elements
+return index%3 === 0;
+})
+
+$("li").first().css({
+
+});
+
+first()
+last()
+
+$("li").eq(3).css({
+//third item from front to back
+});
+
+$("li").eq(-3).css({
+//third item from back to front
+});
+
+$("li").not("#list ul li");//select li but not li under ul
+
+$("ul ul:first").append("<li> I am the last element</li>");
+$("<li> I am the last element</li>").appendTo($("ul ul:first"));//add new child elements for each selected source, the added is the last child 
+
+////////////////////add elements
+prepend() is the first child
+prependTo()
 
 
+$(".red-box").after("<p>place</p>");//add sibling
+$(".red-box").before("<p>place</p>");//add sibling
+
+target.insertAfter(source);
+target.insertBefore(source);
+
+$(".red-box").before(function(){
+  return "<p></p>";
+});//add sibling
 
 
+$(".red-box").before($("p"));//move instead of creating new
+if source contains multiple places, added target has to be cloned
 
 
+///////////////replace elements
+$("li").repleaceWith(1.function 2.directly return 3$("something"));
+
+target.replaceWith(source)
+source.replaceAll(target)
 
 
+//delete 
+var removed = $.remove()//forget all the eventhandlers, children gone
+var detached = $.detached()//remember all the eventhandlers, children gone	
 
 
+//remove own content insdie and every child, but tag remains
+empty();
 
 
+//maniplate attribute property value
+
+attr()
+prop()
+val()
+
+if more than 1 is selected, the first is used
+
+alert(link.attr("href"))	//getter
+link.attr("href", "google.com")	//setter
+
+checkbox.attr() returns checked or not
+checkbox.prop() returns true or false, this is the one you want
+
+cb.val();
 
 
+$("p").css({
+        "background-color" : "#FFFF00",
+        "font-size"         : "20pt"
+    })
 
+
+$(".red_box").css("width")
+$(".red_box").css("width", "+=20px")
+	
+$(".red_box").width()
+
+$(".red_box").css("background-color", "#AA7700")
+var properties = $("p").css(["front-size", "color"]);//return JSON like object
+
+redBox.css("user-select", "none");
+
+//add and remove css class
+addClass("fancy-link large emphaize")
+
+$(function(){
+    $("div").addClass(function(index, currentClass){ //currentClass is just a name, position is important
+        if (currentClass == "red-box")
+            return "blue-box";
+    })
+});
+
+
+//remove class
+removeClass().addClass();
+
+
+//add data to a selected element
+var firstParagraph = $("p:first");
+firstParagraph.data("name" : "fp"); //name value pair
+firstParagraph.removeData("name")
+
+<p data-mydata="somedata"></p>//automatically saved in data
+
+
+//modify what is in between the tag
+
+<p>html is<strong> awesome </strong></p>
+$("p").text() show html is awesome
+
+$("p").html() show html is<strong> awesome
+
+//multiple eq() to first
+
+
+$("p").text("<strong> awesome </strong>") // <strong> awesome </strong>
+$("p").html("<strong> awesome </strong>") // strong
+
+$(this)//this is the correct way of using this
+
+$(".red-box").click(function(event){
+        $(this).stop().fadeTo(1000, 0.5);//stop function stops the current animation
+    })
+    $(".red-box").click();//triggle the click event
+
+click(); hover();
+
+hover(handlerIn, handlerOut) is the same as mouseenter and mouseleave
+
+//same handller for multiple event
+
+$("html").on("click keydown hover", function(){})
+
+//for newly added element, if we would like to see the same effect on them
+//use delegation.
+
+//base code
+$("p").click(function(){
+  $(this).slideup();
+})
+$("#content").append("<p>This is the end paragraph</p>");//no event handller
+
+//delegation to the top
+
+$(function(){
+    $("#content").on("click", "p", function(){
+        $(this).slideToggle();
+    })
+    $("#content").append("<p>This is the end paragraph</p>");//has event handller, delegate to parent
+});
+
+////another example
+$(function(){
+    $("#content").on("mouseenter", "li", function(){
+        $(this).css({
+            "font-size" : "+=4pt"
+        });
+    })
+});
+
+$(function(){
+    $("button").click({
+        user: "peter"
+    }, function(event){
+        greet(event.data); //user is part of event data, it is passed as an object
+    })
+    function greet(userdata){
+        username = userdata.user || "nobody";
+        console.log("hi" + username);
+    }
+});
 
 
 
