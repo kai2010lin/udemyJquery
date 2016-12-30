@@ -1,0 +1,43 @@
+//functions available $.get() $.post() almighty $.ajax() $.getJSON
+//pre>code#code second code means id code
+//$.load is jquery ajax function for load file on THIS server
+
+$(function(){
+    $("#code").load("jss/script.js", function(response, status){
+        if(status=="error"){
+            alert("error");
+        }
+        console.log(response);
+    })
+});
+
+
+///
+
+$(function(){
+    var url = "https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+    $.getJSON(url,{
+        //options
+        tags: "°®",
+        tagmode:"any",
+        format:"json"
+    }).done(function(data){
+        console.log(data);
+        var imgdiv = $("#img");
+        $.each(data.items, function(index,item){
+            console.log(item);
+            var fetchedImg= $("<img>").attr("src", item.media.m);
+            imgdiv.append(fetchedImg);
+            if(index==4){//5 pictures, stop future iteration
+                return false;
+            }
+        })
+    }).fail(function(){
+        alert("get failed!")
+    }).always(function(){
+		//will be excuted in either case
+	})
+});
+
+//HTML <!--...--> Tag
+
